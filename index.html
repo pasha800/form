@@ -1,0 +1,195 @@
+<!doctype html>
+<html lang="ku" dir="rtl">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>فۆرمی زانیاری کرێکار</title>
+    <link rel="preload" href="assets/fonts/NotoSansArabic.ttf" as="font" type="font/ttf" />
+    <link rel="preload" href="assets/fonts/NotoKufiArabic.ttf" as="font" type="font/ttf" />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div id="login-view" class="login-view">
+      <section class="login-panel" aria-labelledby="login-title">
+        <div class="brand-lockup">
+          <div class="brand-mark" aria-hidden="true">
+            <i data-lucide="clipboard-check"></i>
+          </div>
+          <div>
+            <p class="eyebrow">سیستەمی وەرگرتنی کرێکار</p>
+            <h1 id="login-title">چوونەژوورەوە</h1>
+          </div>
+        </div>
+
+        <form id="login-form" class="login-form" novalidate>
+          <label class="field">
+            <span>ناوی بەکارهێنەر</span>
+            <input id="username" name="username" type="text" autocomplete="username" placeholder="ناوی بەکارهێنەر" required />
+            <small class="field-error" data-error-for="username"></small>
+          </label>
+
+          <label class="field">
+            <span>پاسۆرد</span>
+            <div class="password-wrap">
+              <input id="password" name="password" type="password" autocomplete="current-password" placeholder="پاسۆرد" required />
+              <button class="icon-button" type="button" id="toggle-password" aria-label="پیشاندانی پاسۆرد" title="پیشاندانی پاسۆرد">
+                <i data-lucide="eye"></i>
+              </button>
+            </div>
+            <small class="field-error" data-error-for="password"></small>
+          </label>
+
+          <p id="login-error" class="form-alert" role="alert" hidden></p>
+
+          <button class="primary-button wide" type="submit">
+            <i data-lucide="log-in"></i>
+            چوونەژوورەوە
+          </button>
+        </form>
+      </section>
+
+      <aside class="login-visual" aria-hidden="true">
+        <img src="assets/registration-desk.png" alt="" />
+        <div class="visual-caption">
+          <span>PDF</span>
+          <span>WhatsApp</span>
+          <span>بێ داتابەیس</span>
+        </div>
+      </aside>
+    </div>
+
+    <div id="app-view" class="app-view" hidden>
+      <header class="topbar">
+        <div class="brand-lockup compact">
+          <div class="brand-mark" aria-hidden="true">
+            <i data-lucide="file-text"></i>
+          </div>
+          <div>
+            <p class="eyebrow">فۆرمی زانیاری کرێکار</p>
+            <h1>تۆمارکردنی زانیاری</h1>
+          </div>
+        </div>
+
+        <div class="topbar-actions">
+          <span id="connection-status" class="status-pill">
+            <i data-lucide="wifi"></i>
+            <span>ئۆنلاین</span>
+          </span>
+          <span id="session-clock" class="status-pill">
+            <i data-lucide="timer"></i>
+            <span>--:--</span>
+          </span>
+          <button id="logout-button" class="ghost-button" type="button">
+            <i data-lucide="log-out"></i>
+            دەرچوون
+          </button>
+        </div>
+      </header>
+
+      <main class="workspace">
+        <nav id="step-nav" class="step-nav" aria-label="بەشەکانی فۆرم"></nav>
+
+        <section class="progress-panel" aria-label="پێشکەوتنی فۆرم">
+          <div class="progress-info">
+            <span id="progress-text">٠ لە ٨ بەش تەواو کراوە</span>
+            <div class="progress-track" aria-hidden="true">
+              <span id="progress-fill"></span>
+            </div>
+          </div>
+          <button id="assessment-button" class="secondary-button" type="button">
+            <i data-lucide="list-checks"></i>
+            هەڵسەنگاندنی زانیاری پێش PDF
+          </button>
+        </section>
+
+        <section id="assessment-panel" class="assessment-panel" hidden></section>
+
+        <section id="form-screen" class="screen active" aria-labelledby="form-title">
+          <div class="screen-heading">
+            <div>
+              <p class="eyebrow">ژمارەی فۆرم</p>
+              <h2 id="form-title"><span id="serial-preview">WF-...</span></h2>
+            </div>
+            <div class="heading-actions">
+              <button id="reset-button" class="ghost-button" type="button">
+                <i data-lucide="rotate-ccw"></i>
+                پاککردنەوە
+              </button>
+              <button id="preview-button" class="primary-button" type="button">
+                <i data-lucide="eye"></i>
+                پێشبینین
+              </button>
+            </div>
+          </div>
+
+          <form id="worker-form" class="worker-form" novalidate></form>
+
+          <div class="form-footer">
+            <button id="prev-section" class="secondary-button" type="button">
+              <i data-lucide="chevron-right"></i>
+              پێشوو
+            </button>
+            <button id="next-section" class="primary-button" type="button">
+              دواتر
+              <i data-lucide="chevron-left"></i>
+            </button>
+          </div>
+        </section>
+
+        <section id="preview-screen" class="screen" aria-labelledby="preview-title">
+          <div class="screen-heading">
+            <div>
+              <p class="eyebrow">پشتڕاستکردنەوە</p>
+              <h2 id="preview-title">پێشبینینی فۆرم</h2>
+            </div>
+            <div class="heading-actions">
+              <button id="edit-button" class="secondary-button" type="button">
+                <i data-lucide="pencil"></i>
+                گەڕانەوە
+              </button>
+              <button id="print-button" class="secondary-button" type="button">
+                <i data-lucide="printer"></i>
+                چاپکردن
+              </button>
+              <button id="send-button" class="primary-button" type="button">
+                <i data-lucide="send"></i>
+                پشتڕاستکردنەوە و ناردن
+              </button>
+            </div>
+          </div>
+          <div id="preview-content" class="preview-content"></div>
+        </section>
+      </main>
+    </div>
+
+    <dialog id="success-dialog" class="success-dialog">
+      <div class="dialog-icon" aria-hidden="true">
+        <i data-lucide="check"></i>
+      </div>
+      <h2>PDF ئامادەبوو</h2>
+      <p id="success-message"></p>
+      <div class="dialog-actions">
+        <button id="download-again" class="secondary-button" type="button">
+          <i data-lucide="download"></i>
+          داگرتنی PDF
+        </button>
+        <button id="open-whatsapp" class="primary-button" type="button">
+          <i data-lucide="message-circle"></i>
+          واتسئاپ
+        </button>
+        <button id="new-form" class="ghost-button" type="button">
+          <i data-lucide="plus"></i>
+          پاککردنەوەی PDF و فۆرمی نوێ
+        </button>
+      </div>
+    </dialog>
+
+    <div id="pdf-stage" class="pdf-stage" aria-hidden="true"></div>
+
+    <script src="vendor/lucide.min.js"></script>
+    <script src="vendor/html2canvas.min.js"></script>
+    <script src="vendor/jspdf.umd.min.js"></script>
+    <script src="vendor/qrcode.js"></script>
+    <script src="app.js"></script>
+  </body>
+</html>
